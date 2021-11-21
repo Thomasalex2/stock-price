@@ -12,7 +12,16 @@ function changeTheme(color) {
 
 function calculate() {
     var resultsText, absolute, percentage
-    // console.log(purchase_price.value, quantity.value, current_price.value)
+    if (purchase_price.value === "" || quantity.value === "" || current_price.value === "") {
+        results.innerText = "Please fill in all fields"
+        results.style.display = "block"
+        return
+    }
+    else if (purchase_price.value <=0 || quantity.value <=0 || current_price.value <=1){
+        results.innerText = "Please enter valid values"
+        results.style.display = "block"
+        return
+    }
     absolute = (current_price.value - purchase_price.value) * quantity.value
     percentage = ((absolute / quantity.value) * 100 / purchase_price.value).toFixed(2)
     if (absolute > 0) {
